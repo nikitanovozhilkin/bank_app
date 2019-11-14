@@ -6,6 +6,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=30, blank=True)
     second_name= models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
+    telephone_number = models.CharField(max_length=30, blank=True)
 
 class Bill(models.model):
     number= models.CharField(max_length=30, blank=True)
@@ -28,6 +29,13 @@ class DebitBill(Bill):
 
 class Card (models.model):
      number= models.CharField(max_length=30, blank=True)
-     bill = models.ForeignKey(Bill, on_delete=models.Cascade)
-    
+     bill = models.ForeignKey(Bill, on_delete=models.Cascade
 
+class Application(models.model):
+    number= models.CharField(max_length=30, blank=True)
+    sourname = models.CharField(max_length=30, blank=True)
+    name = models.CharField(max_length=30, blank=True)
+    second_name= models.CharField(max_length=30, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    telephone_number = models.CharField(max_length=30, blank=True)
+    approved = models.BooleanField(default=False)
