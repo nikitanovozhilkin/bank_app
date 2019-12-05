@@ -21,18 +21,18 @@ class Deposit(models.model):
 
 class CreditDeposit(Deposit):
     percent= models.PositiveIntegerField()
-    amount = models.PositiveIntegerField()
-    dolg= amount + amount * (percent / 100)
+    balance = models.PositiveIntegerField()
+    dolg= balance + balance * (percent / 100)
 
 
 class DebitDeposit(Deposit):
-    amount = models.PositiveIntegerField()
+    balance = models.PositiveIntegerField()
 
 
 
 class Card (models.model):
      number= models.CharField(max_length=30, blank=True)
-     deposit = models.ForeignKey(Bill, on_delete=models.Cascade
+     deposit = models.ForeignKey(Bill, on_delete=models.Cascade)
 
 class Application(models.model):
     number= models.CharField(max_length=30, blank=True)
@@ -50,8 +50,11 @@ class Transaction(models.Model):
         on_delete=models.CASCADE,
     )
     timestamp = models.DateTimeField(auto_now_add=True)
+    deposit = models.ForeignKey(Bill, on_delete=models.Cascade)
 
     def __str__(self):
         return str(self.user)
     class Meta:
         abstract = True
+
+
