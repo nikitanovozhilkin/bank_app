@@ -50,11 +50,18 @@ class Transaction(models.Model):
         on_delete=models.CASCADE,
     )
     timestamp = models.DateTimeField(auto_now_add=True)
-    deposit = models.ForeignKey(Bill, on_delete=models.Cascade)
+    deposit = models.ForeignKey(Deposit, on_delete=models.Cascade)
+    balance = models.ForeignKey(Deposit, on_delete=models.Cascade)
 
     def __str__(self):
         return str(self.user)
     class Meta:
         abstract = True
+class IncomeTransaction (Transaction):
+    amount= models.PositiveIntegerField()
+    balance =+ amount
 
+class OutcomeTransaction (Transaction):
+    amount= models.PositiveIntegerField()
+    balance =- amount
 
