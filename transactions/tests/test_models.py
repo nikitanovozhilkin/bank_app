@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from ..models import Diposit
+from ..models import Diposit,Withdrawal
 
 User = get_user_model()
 
@@ -17,7 +17,7 @@ class DipositTest(TestCase):
         Diposit.objects.create(user=user_2,amount=amount_2,timestamp='2019-02-15 00:27:40')
         
 class WithdrawalTest(TestCase):
-    """ Test module for Diposit model """
+    """ Test module for Withdrawal model """
     def setUp(self):
         user_1 = User.objects.create(username='user #1')
         user_2 = User.objects.create(username='user #2')
