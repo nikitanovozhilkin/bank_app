@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from ..models import Diposit,Withdrawal
+from transactions.models import Diposit,Withdrawal
+from django.urls import reverse
 
 User = get_user_model()
 
