@@ -41,10 +41,11 @@ INSTALLED_APPS = [
 
     'django_celery_beat',
     'crispy_forms',
-
+    'rest_framework',
     'accounts',
     'core',
     'transactions',
+    
 ]
 
 MIDDLEWARE = [
@@ -159,3 +160,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backends.AccountNoBackend',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

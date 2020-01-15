@@ -20,17 +20,32 @@ from django.contrib import admin
 
 from core.views import home, about
 
+from django.urls import include, path
+from rest_framework import routers
+from accounts import views
 
-urlpatterns = [
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
+
+    
+uurlpatterns = [
     # admin
     url(r'^admin/', admin.site.urls),
     # Accounts
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # core
     url(r'^$', home, name='home'),
     url(r'^about/$', about, name='about'),
     # transactions
     url(r'^', include('transactions.urls', namespace='transactions')),
+   ]
+    
 ]
 
 

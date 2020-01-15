@@ -13,7 +13,9 @@ from .forms import (
     AccountDetailsForm, UserAddressForm,
 )
 from .models import User
-
+from django.contrib.auth.models import User
+from rest_framework import viewsets
+from .serializers import UserSerializer
 
 def register_view(request):
     if request.user.is_authenticated:
@@ -93,3 +95,14 @@ def logout_view(request):
     else:
         logout(request)
         return redirect("home")
+
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
