@@ -10,11 +10,18 @@ class TransactionViewTest(TestCase):
     @classmethod
 
     def setUpTestData(cls):
-        Diposit.objects.create(user=user_1,balance=0,amount=amount_1=100, timestamp='2010-02-15 00:27:40')
-        Diposit.objects.create(user=user_2,balance=0,amount=amount_2=1000,timestamp='2019-02-15 00:28:40')
-        Withdrawal.objects.create(user=user_3,balance=100,amount=amount_1=50,timestamp='2010-02-15 00:29:40')
-        Withdrawal.objects.create(user=user_4,balance=100,amount=amount_2=250,timestamp='2019-02-15 00:30:40')
+        
+        Diposit.objects.create(user=user_1,balance=0,amount=100, timestamp='2010-02-15 00:27:40')
+        Diposit.objects.create(user=user_2,balance=0,amount=1000,timestamp='2019-02-15 00:28:40')
+        Withdrawal.objects.create(user=user_3,balance=100,amount=50,timestamp='2010-02-15 00:29:40')
+        Withdrawal.objects.create(user=user_4,balance=100,amount=250,timestamp='2019-02-15 00:30:40')
+        Diposit.objects.create(user=user_5,balance=0,amount=-100, timestamp='2010-02-15 00:31:40')
+        Diposit.objects.create(user=user_6,balance=100,amount=-100, timestamp='2010-02-15 00:32:40')
 
+
+
+
+    
    def test_deposit_view(request):
        if form.is_valid():
         form = DepositForm(request.POST or None)
